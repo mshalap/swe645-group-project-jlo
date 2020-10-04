@@ -49,11 +49,11 @@ pipeline {
 		stage('Deploy Image') {
             steps{
                
-               sh'''
+               bat"""
                 docker login
                 docker pull longofest/hw1-image:$BUILD_NUMBER
                 kubectl set image deployment hw1 hw1-image=docker.io/longofest/hw1-image:$BUILD_NUMBER
-                '''
+                """
             }
         }
 
