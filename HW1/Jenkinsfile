@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "longofest/hw1-image"
-        registryCredential = 'dockerhubjlo'
+        registryCredential = 'dockerhub'
         dockerImage = ''
     }
     agent any
