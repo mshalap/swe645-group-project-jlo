@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Image') {
+        stage('Push Image') {
             steps{
                 script{
                     docker.withRegistry('',registryCredential){
@@ -38,21 +38,21 @@ pipeline {
             }
         }
 
+		/*
         stage('Remove Unused Image') {
           steps{
             bat "docker rmi $registry:$BUILD_NUMBER"
           }
         }
+		*/
 		
-		stage('Redeploy') {
+		stage('Deploy Image') {
             steps{
                
-               sh'''
-               #!/bin/bash
+               bat'''
                 docker login
                 docker pull longofest/hw1-image:$BUILD_NUMBER
-                sudo -s source /etc/environment
-                kubectl --kubeconfig /home/ubuntu/.kube/config set image deployment swe645 swe645-group=docker.io/margaret64275/swe645-group-project:$BUILD_NUMBER
+                kubectl set image deployment hw1 hw1-image=docker.io/longofest/hw1-image:$BUILD_NUMBER
                 '''
             }
         }
