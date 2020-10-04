@@ -51,7 +51,7 @@ pipeline {
                
                bat"""
                 docker pull longofest/hw1-image:$BUILD_NUMBER
-                kubectl --kubeconfig c:\Users\margaret64275\.kube\config set image deployment hw1 hw1-image=docker.io/longofest/hw1-image:$BUILD_NUMBER
+                kubectl --kubeconfig c:/Users/margaret64275/.kube/config set image deployment hw1 hw1-image=docker.io/longofest/hw1-image:$BUILD_NUMBER
                 """
             }
         }
