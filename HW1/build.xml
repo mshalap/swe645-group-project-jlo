@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="HW1">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/annotations-api.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/catalina-ant.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/catalina-ha.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/catalina-ssi.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/catalina.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/ecj-4.15.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/el-api.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/jasper-el.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/jasper.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/jaspic-api.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/jsp-api.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/servlet-api.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-api.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-util.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../apache-tomcat-9.0.37/lib/websocket-api.jar"/>
+    </path>
+    <path id="Maven Dependencies.libraryclasspath"/>
+    <path id="HW1.classpath">
+        <pathelement location="target/classes"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="target/classes"/>
+    	<mkdir dir="src"/>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="target/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="HW1.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+</project>

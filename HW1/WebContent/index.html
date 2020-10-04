@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Jeff Longo SWE645</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		
+		<link rel="stylesheet" href="https://jlongo-swe645-site.s3.amazonaws.com/assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="https://jlongo-swe645-site.s3.amazonaws.com/index.html">Jeff Longo</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="https://jlongo-swe645-site.s3.amazonaws.com/index.html">Home</a></li>
+					<li><a href="#">HW1 - Survey</a></li>
+				</ul>
+			</nav>
+			
+			<section class="wrapper">
+			<div class="inner">
+				<header class="special">
+					<h2>Survey</h2>
+				</header>	
+				<p>Please take this student survey.</p>
+			</div>
+			</section>
+			
+		<!-- Form -->
+	<form action="submit.jsp" target="_blank" method="POST">
+	<div class="content" style="">
+        <label>First Name</label>
+        <input  type="text" required name="First Name">
+        <label>Last Name</label>
+        <input  type="text" required name="Last Name">
+        
+      <div class="section">
+        <label>Street Address</label>
+        <input  type="text" required name="Street Address">
+      </div>
+      <div class="section">
+        <label>City</label>
+        <input  type="text" required name="City">
+      </div>
+      <div class="section">
+        <label>State</label>
+        <input  type="text" required name="State">
+      </div>
+      <div class="section">
+        <label>Zip Code</label>
+        <input  type="text" required name="Zip Code">
+      </div>
+      <div class="section">
+        <label>Telephone Number</label>
+        <input  type="text" required name="Telephone Number">
+      </div>
+      <div class="section">
+        <label>Email Address</label>
+        <input  type="text" required name="Email Address">
+      </div>
+      <div class="section">
+        <label for="date">Survey Date</label>
+        <!-- While you said to make this a text box, the html5 date type is more appropriate -->
+        <input type="date" id="date" required name="Survey Date">
+      </div>
+      <div class="section">
+        <label>What did you like most about the campus?</label><br>
+        <input type="checkbox" id="students" name="students" value="students">
+        <label for="students">Students</label>
+        <input type="checkbox" id="location" name="location" value="location">
+        <label for="location">Location</label>
+        <input type="checkbox" id="campus" name="campus" value="campus">
+        <label for="campus">Campus</label>
+        <input type="checkbox" id="atmosphere" name="atmosphere" value="atmosphere">
+        <label for="atmosphere">Atmosphere</label>
+        <input type="checkbox" id="dorm" name="dorm" value="dorm">
+        <label for="dorm">Dorm Rooms</label>
+        <input type="checkbox" id="sports" name="sports" value="sports">
+        <label for="sports">Sports</label>
+      </div>
+      <div class="section">
+        <label>How did you become interested in the university?</label><br>
+        <input  type="radio" id="friends" name="interest" value="friends">
+        <label for="friends">Friends</label>
+        <input  type="radio" id="television" name="interest" value="television">
+        <label for="television">Television</label>
+        <input  type="radio" id="internet" name="interest" value="internet">
+        <label for="internet">Internet</label>
+        <input  type="radio" id="other" name="interest" value="other">
+        <label for="other">Other</label>
+      </div>
+      <div class="section">
+        <label>How likely are you to recommend this school?</label>
+        <select class="w3-select w3-border" name="option">
+          <option value="" disabled selected>Select an option</option>
+          <option value="1">Very Likely</option>
+          <option value="2">Likely</option>
+          <option value="3">Unlikely</option>
+        </select>
+      </div>
+      <div class="section">
+        <label>Raffle! Enter at least 10 comma separated numbers between 1 and 100.</label>
+        <input type="text" name="Raffle">
+      </div>
+      <div class="section">
+        <label>Additional Comments</label>
+        <textarea name="Additional Comments"></textarea>
+      </div>
+      <div class="section">
+        <button type="reset" >Cancel</button>
+        <button type="submit" class="primary" >Submit</button>
+      </div>
+     </div>
+    </form>
+    
+   
+   		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Acknowledgements</h3>
+							<p>CSS template designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
+						</section>
+						<section>
+							<h4>Social</h4>
+							<ul class="plain">
+								<li><a href="https://twitter.com/TechnicallyJLo"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="https://www.linkedin.com/in/jeffreylongo/"><i class="icon fa-linkedin">&nbsp;</i>LinkedIn</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+   
+    
+    		<!-- Scripts -->
+   
+    		<script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/jquery.min.js"></script>
+			<script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/browser.min.js"></script>
+			<script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/breakpoints.min.js"></script>
+			<script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/util.js"></script>
+			<script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/main.js"></script>
+    
+</body>
+</html>

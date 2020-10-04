@@ -1,0 +1,65 @@
+pipeline {
+    environment {
+        registry = "longofest/hw1-image"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
+    agent any
+    
+    stages {
+        stage('Clone') {
+            steps{
+                git 'https://github.com/jlokastle/swe645-group-project'
+                withAnt(installation: 'Ant1.10.8') {
+                        bat'''
+                        cd HW1
+                        ant war
+                        '''
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                  dockerImage = docker.build(registry + ":$BUILD_NUMBER", "./HW1")
+                }
+
+            }
+        }
+
+        stage('Deploy Image') {
+            steps{
+                script{
+                    docker.withRegistry('',registryCredential){
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
+        stage('Remove Unused Image') {
+          steps{
+            bat "docker rmi $registry:$BUILD_NUMBER"
+          }
+        }
+		
+		stage('Redeploy') {
+            steps{
+               
+               sh'''
+               #!/bin/bash
+                docker login
+                docker pull longofest/hw1-image:$BUILD_NUMBER
+                sudo -s source /etc/environment
+                kubectl --kubeconfig /home/ubuntu/.kube/config set image deployment swe645 swe645-group=docker.io/margaret64275/swe645-group-project:$BUILD_NUMBER
+                '''
+            }
+        }
+
+
+		
+    }
+
+     
+}
