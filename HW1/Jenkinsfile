@@ -37,14 +37,6 @@ pipeline {
                 }
             }
         }
-
-		/*
-        stage('Remove Unused Image') {
-          steps{
-            bat "docker rmi $registry:$BUILD_NUMBER"
-          }
-        }
-		*/
 		
 		stage('Deploy Image') {
             steps{
@@ -55,8 +47,6 @@ pipeline {
                 """
             }
         }
-
-
 		
     }
 
