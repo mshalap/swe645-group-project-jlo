@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Survey } from '../survey'
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-display-results',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayResultsComponent implements OnInit {
 
-  constructor() { }
+  title = 'View Surveys';
+  surveys:Survey[];
 
-  ngOnInit(): void {
+  constructor(private apiService:ApiService) {}
+
+  ngOnInit() { 
+    this.refreshSurveys()
+  }
+
+  refreshSurveys() {
+    this.apiService.getSurveys()
+      .subscribe(data => {
+        console.log(data)
+        this.surveys=data;
+      })      
+ 
   }
 
 }
