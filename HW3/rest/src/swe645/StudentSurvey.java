@@ -1,27 +1,34 @@
 package swe645;
 
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
+
+import javax.ejb.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import swe645.entities.*;
 
+@Stateless
 @Path("survey")
-public class StudentSurvey {
+public class StudentSurvey{
 
-	@PersistenceContext
-	EntityManagerFactory emf;
+	@PersistenceContext(name = "HW3")
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("HW3");
 
 	@Resource
-	UserTransaction utx;
+	private UserTransaction utx;
 	
 	
 	/*
@@ -36,9 +43,12 @@ public class StudentSurvey {
 	*/
 	
 	@GET
+	@Produces("application/xml")
 	public List<Survey> get() {
-		List<Survey> retval = new ArrayList<Survey>();
-		return retval;
+		EntityManager em = emf.createEntityManager();
+		CriteriaQuery<Survey> cq = em.getCriteriaBuilder().createQuery(Survey.class);
+		cq.select(cq.from(Survey.class));
+		return em.createQuery(cq).getResultList();
 	}
 	
 	@POST
@@ -102,13 +112,7 @@ public class StudentSurvey {
 		} catch (Exception e) {
 			try {
 				utx.rollback();
-			} catch (IllegalStateException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SecurityException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SystemException e1) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
