@@ -1,16 +1,12 @@
 package swe645;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import javax.ejb.*;
