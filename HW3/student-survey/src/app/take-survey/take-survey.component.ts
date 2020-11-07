@@ -12,7 +12,7 @@ export class TakeSurveyComponent implements OnInit {
   title = 'Take Survey';
   surveys:Survey[];
 
-  model = new Survey('','','','','','','','',new Date(),'','','','','','','','','','');
+  model = new Survey('','','','','','','','',null,'','','','','','','','','','');
 
   constructor(private apiService:ApiService) {}
 

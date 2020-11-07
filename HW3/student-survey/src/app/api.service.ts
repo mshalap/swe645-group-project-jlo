@@ -6,28 +6,23 @@ import { Observable } from 'rxjs';
 @Injectable({providedIn:'root'})
 export class ApiService {
  
-  baseURL: string = "http://localhost:3000/";  //TODO
+  baseURL: string = "http://184.72.100.51:31560/HW3/rest/"
  
   constructor(private http: HttpClient) {
   }
  
   getSurveys(): Observable<Survey[]> {
-    console.log('getSurveys '+this.baseURL + 'surveys')
-    return this.http.get<Survey[]>(this.baseURL + 'surveys')
+    console.log('getSurveys '+this.baseURL + 'survey')
+    return this.http.get<Survey[]>(this.baseURL + 'survey')
   }
  
   addSurvey(survey:Survey): Observable<any> {
-    const headers = { 'content-type': 'application/x-www-form-urlencoded'}  
-    //const body=JSON.stringify(survey);
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(survey);
 
-    var form_data = new FormData();
+    console.log(body)
 
-    for ( var key in survey ) {
-        form_data.append(key, survey[key]);
-    }
-
-    console.log(form_data)
-    return this.http.post(this.baseURL + 'surveys', form_data,{'headers':headers})
+    return this.http.post(this.baseURL + 'survey', body, {'headers':headers})
   }
  
 }
