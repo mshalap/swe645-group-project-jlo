@@ -10,10 +10,10 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" /><property
 				name="hibernate.dialect.storage_engine" value="innodb" />
 			<property
-				name="hibernate.hbm2ddl.auto" value="create" /><property
+				name="hibernate.hbm2ddl.auto" value="update" /><property
 				name="hibernate.show_sql" value="true" /><property
 				name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /><property
-				name="hibernate.connection.url" value="jdbc:mysql://3.85.146.233:3306/swe645" /><property
+				name="hibernate.connection.url" value="jdbc:mysql://54.227.206.99:30000/swe645" /><property
 				name="hibernate.connection.username" value="mysqluser" /><property
 				name="hibernate.connection.password" value="donthaveacow" />
 		</properties>
