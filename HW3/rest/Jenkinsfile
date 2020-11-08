@@ -24,7 +24,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                  dockerImage = docker.build(registry + ":$BUILD_NUMBER", "./rest")
+                  dockerImage = docker.build(registry + ":$BUILD_NUMBER", "./HW3/rest")
                 }
 
             }
