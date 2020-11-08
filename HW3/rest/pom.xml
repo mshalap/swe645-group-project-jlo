@@ -13,7 +13,7 @@
         <version>3.8.1</version>
         <configuration>
         	<fork>true</fork>
-        	<executable>c:\Program Files\Java\jdk1.8.0_201\bin\javac.exe</executable>
+        	<executable>C:\Program Files\Java\jdk1.8.0_152\bin\javac.exe</executable>
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
@@ -30,9 +30,14 @@
   </build>
   <dependencies>
   <dependency>
+    <groupId>org.eclipse</groupId>
+    <artifactId>yasson</artifactId>
+    <version>1.0.8</version>
+</dependency>
+  <dependency>
   <groupId>org.glassfish.jersey.media</groupId>
   <artifactId>jersey-media-json-jackson</artifactId>
-  <version>2.25</version>
+  <version>2.32</version>
 </dependency>
   	<dependency>
   		<groupId>org.glassfish.jersey.containers</groupId>
