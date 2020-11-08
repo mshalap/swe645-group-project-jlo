@@ -74,8 +74,9 @@
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-core</artifactId>
     	<version>5.4.10.Final</version>
-		</dependency>
+	</dependency>
   	<dependency>
+  	
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.22</version>
