@@ -14,7 +14,7 @@ pipeline {
             steps{
                 git 'https://github.com/mshalap/swe645-group-project-jlo'
                	bat"""
-               	cd HW3
+               	cd HW3/rest
                	mvn package
                	""" 
             }
