@@ -18,6 +18,7 @@ pipeline {
                 git 'https://github.com/mshalap/swe645-group-project-jlo'
                	bat"""
                	cd HW3/rest
+				mvn dependency:get
                	mvn package
                	""" 
             }
