@@ -61,12 +61,22 @@ pipeline {
             }
         }
 		
-		stage('Deploy Image') {
+		stage('Deploy REST Image') {
             steps{
                
                bat"""
                 docker pull longofest/hw3-image:$BUILD_NUMBER
                 kubectl --kubeconfig c:/Users/margaret64275/.kube/config set image deployment hw3rest hw3rest=docker.io/longofest/hw3-image:$BUILD_NUMBER
+                """
+            }
+        }
+		
+		stage('Deploy Angular Image') {
+            steps{
+               
+               bat"""
+                docker pull longofest/hw3-frontend:$BUILD_NUMBER
+                kubectl --kubeconfig c:/Users/margaret64275/.kube/config set image deployment frontend frontend=docker.io/longofest/hw3-frontend:$BUILD_NUMBER
                 """
             }
         }
