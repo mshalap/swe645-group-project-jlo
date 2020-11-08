@@ -19,7 +19,6 @@ pipeline {
                	bat"""
                	cd HW3/rest
 				mvn clean install -U
-               	mvn package
                	""" 
             }
         }
