@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Jeff Longo SWE645</title>
+        <title>Take Survey</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <meta name="description" content="" />
@@ -10,22 +10,6 @@
         <link rel="stylesheet" href="https://jlongo-swe645-site.s3.amazonaws.com/assets/css/main.css" />
     </head>
     <body class="is-preload">
-
-        <!-- Header -->
-        <!-- <header id="header">
-            <a class="logo" href="https://jlongo-swe645-site.s3.amazonaws.com/index.html">Jeff Longo</a>
-            <nav>
-                <a href="#menu">Menu</a>
-            </nav>
-        </header> -->
-
-        <!-- Nav -->
-        <!-- <nav id="menu">
-            <ul class="links">
-                <li><a href="https://jlongo-swe645-site.s3.amazonaws.com/index.html">Home</a></li>
-                <li><a href="#">HW1 - Survey</a></li>
-            </ul>
-        </nav> -->
 
         <div class="container">
             <div [hidden]="submitted">
@@ -109,9 +93,9 @@
                         <label>How likely are you to recommend this school?</label>
                         <select class="w3-select w3-border" name="option" [(ngModel)]="model.recommendation">
                             <option value="" disabled selected>Select an option</option>
-                            <option value="1">Very Likely</option>
-                            <option value="2">Likely</option>
-                            <option value="3">Unlikely</option>
+                            <option value="Very Likely">Very Likely</option>
+                            <option value="Likely">Likely</option>
+                            <option value="Unlikely">Unlikely</option>
                         </select>
                     </div>
                     <div class="section">
@@ -130,39 +114,9 @@
             </div>
           
             <div [hidden]="!submitted">
-              <h2>The survey was submitted.</h2>
+              <h2>{{message}}</h2>
             </div>
           </div>
-
-        <!-- Footer -->
-        <!-- <footer id="footer">
-            <div class="inner">
-                <div class="content">
-                    <section>
-                        <h3>Acknowledgements</h3>
-                        <p>CSS template designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
-                    </section>
-                    <section>
-                        <h4>Social</h4>
-                        <ul class="plain">
-                            <li><a href="https://twitter.com/TechnicallyJLo"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-                            <li><a href="https://www.linkedin.com/in/jeffreylongo/"><i class="icon fa-linkedin">&nbsp;</i>LinkedIn</a></li>
-                        </ul>
-                    </section>
-                </div>
-                <div class="copyright">
-                    &copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
-                </div>
-            </div>
-        </footer> -->
-
-
-        <!-- Scripts -->
-        <script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/jquery.min.js"></script>
-        <script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/browser.min.js"></script>
-        <script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/breakpoints.min.js"></script>
-        <script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/util.js"></script>
-        <script src="https://jlongo-swe645-site.s3.amazonaws.com/assets/js/main.js"></script>
 
     </body>
 </html>

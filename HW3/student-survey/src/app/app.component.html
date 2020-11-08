@@ -13,29 +13,29 @@
 
         <!-- Header -->
         <header id="header">
-            <a class="logo" href="https://jlongo-swe645-site.s3.amazonaws.com/index.html">Welcome students!</a>
-            <!-- <nav>
-                <a href="#menu">Menu</a>
-            </nav> -->
+            <a class="logo" routerLink="/"> Home </a>
         </header>
-        
-
-        <div class="content">
-          <!-- Resources -->
-          <h2>Navigation</h2>
-          <p>Use the links below to take a survey or view survey results.</p>
-
-          <div class="section">
-            <a routerLink="/take-survey"><button class="btn btn-success" > Student Survey </button></a>
-            <a routerLink="/display-results"><button class="btn btn-success" > List All Surveys </button></a>
-          </div>
-
-          <div class="section">
-            <router-outlet></router-outlet>
-          </div>
-        </div>
 
         
+        <section class="wrapper">
+          <div class="inner">
+            <header class="special">
+              <h1>Survey Project</h1>
+            </header>
+            <p>Use the links below to take a survey or view survey results.</p>
+              <div class="section">
+                <div class="content">
+                  <a routerLink="/take-survey"><button class="btn btn-success" > Student Survey </button></a>
+                  <a routerLink="/display-results"><button class="btn btn-success" > List All Surveys </button></a>
+                </div>
+              </div>
+            <div class="section">
+              <p></p>
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </section>
+
 
         <!-- Footer -->
         <footer id="footer">

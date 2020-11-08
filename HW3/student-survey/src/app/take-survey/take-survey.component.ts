@@ -19,6 +19,7 @@ export class TakeSurveyComponent implements OnInit {
   ngOnInit() { }
 
   submitted = false;
+  message = ""
 
   onSubmit() { 
     this.submitted = true; 
@@ -27,9 +28,14 @@ export class TakeSurveyComponent implements OnInit {
  
   addSurvey() {
     this.apiService.addSurvey(this.model)
-      .subscribe(data => {
-        console.log(data)
-      })      
+      .subscribe(
+      succeed=>{
+        this.message = "Thank you for submitting the form!";
+      },
+      error=>
+      {
+        this.message = "Form submission failed!";
+      } )      
   }
 
 }
