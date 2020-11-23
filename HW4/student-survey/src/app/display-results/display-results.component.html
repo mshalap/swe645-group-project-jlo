@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Show Survey Results</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        
+        <link rel="stylesheet" href="https://jlongo-swe645-site.s3.amazonaws.com/assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <div style="overflow-x:scroll;">
+        <section class="wrapper">
+            <div class="inner">
+                <header class="special">
+                    <h2>Survey Results</h2>
+                </header>
+            </div>
+        </section>
+        
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Street Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    <th>Telephone Number</th>
+                    <th>Email Address</th>
+                    <th>Survey Date</th>
+                    <th>Liked Students</th>
+                    <th>Liked Location</th>
+                    <th>Liked Campus</th>
+                    <th>Liked Atmosphere</th>
+                    <th>Liked Dorm Rooms</th>
+                    <th>Liked Sports</th>
+                    <th>Became Interested By</th>
+                    <th>Likely to Recommend</th>
+                    <th>Raffle</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let survey of surveys;">
+                    <td>{{survey.fname}}</td>
+                    <td>{{survey.lname}}</td>
+                    <td>{{survey.addr}}</td>
+                    <td>{{survey.city}}</td>
+                    <td>{{survey.state}}</td>
+                    <td>{{survey.zip}}</td>
+                    <td>{{survey.tele}}</td>
+                    <td>{{survey.email}}</td>
+                    <td>{{survey.date | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{survey.students}}</td>
+                    <td>{{survey.location}}</td>
+                    <td>{{survey.campus}}</td>
+                    <td>{{survey.dorm}}</td>
+                    <td>{{survey.atmosphere}}</td>
+                    <td>{{survey.sports}}</td>
+                    <td>{{survey.interest}}</td>
+                    <td>{{survey.recommendation}}</td>
+                    <td>{{survey.raffle}}</td>
+                    <td>{{survey.comments}}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+pipeline {
+    environment {
+        registry = "longofest/hw3-image"
+		registryAngular = "longofest/hw3-frontend"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+		dockerImageAngular = ''
+    }
+    agent any
+    tools{
+        maven 'Maven 3.3.9' 
+		jdk 'jdk8'
+    }
+    
+    stages {
+        stage('Clone') {
+            steps{
+                git 'https://github.com/mshalap/swe645-group-project-jlo'
+               	bat"""
+               	cd HW3/rest
+				mvn clean install -U
+               	""" 
+            }
+        }
+
+        stage('Build REST') {
+            steps {
+                script {
+                  dockerImage = docker.build(registry + ":$BUILD_NUMBER", "./HW3/rest")
+                }
+
+            }
+        }
+
+        stage('Build Angular') {
+            steps {
+                script {
+                  dockerImageAngular = docker.build(registryAngular + ":$BUILD_NUMBER", "./HW3/student-survey")
+                }
+
+            }
+        }
+
+        stage('Push REST Image') {
+            steps{
+                script{
+                    docker.withRegistry('',registryCredential){
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+		
+		stage('Push Angular Image') {
+            steps{
+                script{
+                    docker.withRegistry('',registryCredential){
+                        dockerImageAngular.push()
+                    }
+                }
+            }
+        }
+		
+		stage('Deploy REST Image') {
+            steps{
+               
+               bat"""
+                docker pull longofest/hw3-image:$BUILD_NUMBER
+                kubectl --kubeconfig c:/Users/margaret64275/.kube/config set image deployment hw3rest hw3rest=docker.io/longofest/hw3-image:$BUILD_NUMBER
+                """
+            }
+        }
+		
+		stage('Deploy Angular Image') {
+            steps{
+               
+               bat"""
+                docker pull longofest/hw3-frontend:$BUILD_NUMBER
+                kubectl --kubeconfig c:/Users/margaret64275/.kube/config set image deployment frontend frontend=docker.io/longofest/hw3-frontend:$BUILD_NUMBER
+                """
+            }
+        }
+		
+    }
+
+     
+}

@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Jeff Longo and Margaret Redman SWE645 HW3</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        
+        <link rel="stylesheet" href="https://jlongo-swe645-site.s3.amazonaws.com/assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <!-- Header -->
+        <header id="header">
+            <a class="logo" routerLink="/"> Home </a>
+        </header>
+
+        
+        <section class="wrapper">
+          <div class="inner">
+            <header class="special">
+              <h1>Survey Project</h1>
+            </header>
+            <p>Use the links below to take a survey or view survey results. Have fun!</p>
+              <div class="section">
+                <div class="content">
+                  <a routerLink="/take-survey"><button class="btn btn-success" > Student Survey </button></a>
+                  <a routerLink="/display-results"><button class="btn btn-success" > List All Surveys </button></a>
+                </div>
+              </div>
+            <div class="section">
+              <p></p>
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <div class="content">
+                    <section>
+                        <h3>Acknowledgements</h3>
+                        <p>CSS template designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
+                    </section>
+                    <section>
+                        <h4>Social</h4>
+                        <ul class="plain">
+                            <li><a href="https://twitter.com/TechnicallyJLo"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                            <li><a href="https://www.linkedin.com/in/jeffreylongo/"><i class="icon fa-linkedin">&nbsp;</i>LinkedIn</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="copyright">
+                    &copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>
+
+
+
+
+
+
