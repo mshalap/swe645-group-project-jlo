@@ -17,7 +17,7 @@ pipeline {
             steps{
                 git 'https://github.com/mshalap/swe645-group-project-jlo'
                	bat"""
-               	cd HW3/rest
+               	cd HW4/rest
 				mvn clean install -U
                	""" 
             }
@@ -26,7 +26,7 @@ pipeline {
         stage('Build REST') {
             steps {
                 script {
-                  dockerImage = docker.build(registry + ":$BUILD_NUMBER", "./HW3/rest")
+                  dockerImage = docker.build(registry + ":$BUILD_NUMBER", "./HW4/rest")
                 }
 
             }
@@ -35,7 +35,7 @@ pipeline {
         stage('Build Angular') {
             steps {
                 script {
-                  dockerImageAngular = docker.build(registryAngular + ":$BUILD_NUMBER", "./HW3/student-survey")
+                  dockerImageAngular = docker.build(registryAngular + ":$BUILD_NUMBER", "./HW4/student-survey")
                 }
 
             }
