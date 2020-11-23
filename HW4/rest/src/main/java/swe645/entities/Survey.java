@@ -3,11 +3,6 @@ package swe645.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-//import javax.persistence.*;
-//import javax.xml.bind.annotation.XmlRootElement;
-
-//@Entity
-//@XmlRootElement
 public class Survey implements Serializable {
 
 	/**
@@ -15,8 +10,8 @@ public class Survey implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	// This id field used to the be the primary key when we used the database approach. The field
+	// is not used anymore for our Kafka implementation.
 	private int id = 0;
 	
 	private String fname;
@@ -155,10 +150,6 @@ public class Survey implements Serializable {
 	private String recommendation;
 	private String raffle;
 	
-	//@Column(length = 2000)
 	private String comments;
-	
-	
-	
 	
 }
