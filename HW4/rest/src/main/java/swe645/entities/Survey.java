@@ -3,12 +3,11 @@ package swe645.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
+//import javax.persistence.*;
+//import javax.xml.bind.annotation.XmlRootElement;
 
-//We're gonna persist this shit.
-@Entity
-@XmlRootElement
+//@Entity
+//@XmlRootElement
 public class Survey implements Serializable {
 
 	/**
@@ -16,9 +15,9 @@ public class Survey implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id = 0;
 	
 	private String fname;
 	private String lname;
@@ -156,7 +155,7 @@ public class Survey implements Serializable {
 	private String recommendation;
 	private String raffle;
 	
-	@Column(length = 2000)
+	//@Column(length = 2000)
 	private String comments;
 	
 	

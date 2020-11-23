@@ -3,6 +3,8 @@ package swe645;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+import java.util.Arrays;
 
 import javax.annotation.Resource;
 import javax.persistence.*;
@@ -15,6 +17,14 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import swe645.entities.*;
 
 @Stateless
@@ -24,31 +34,53 @@ public class StudentSurvey{
 	public static boolean isNullOrBlank(String param) { 
 	    return param == null || param.trim().length() == 0;
 	}
-	
-	
-	@PersistenceContext(name = "HW3")
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("HW3");
 
-	
-	
-	/*
-	 * Test code
-	@GET
-	//public List<Survey> get() {
-	public String get() {
-		
-		return "Hello World";
-	}
-	
-	*/
 	
 	@GET
 	@Produces("application/json")
 	public List<Survey> get() {
-		EntityManager em = emf.createEntityManager();
-		CriteriaQuery<Survey> cq = em.getCriteriaBuilder().createQuery(Survey.class);
-		cq.select(cq.from(Survey.class));
-		return em.createQuery(cq).getResultList();
+		String topicName = "survey-data-topic";
+		Properties consumerProps = new Properties();
+		
+		consumerProps.put("bootstrap.servers", "184.72.100.51:32710");  //"localhost:9092");
+		consumerProps.put("group.id", "Angular");
+		consumerProps.put("enable.auto.commit", "false");  //prevents offset from getting committed so that we retrieve all messages in the topic each time
+		consumerProps.put("auto.commit.interval.ms", "1000");
+		consumerProps.put("auto.offset.reset", "earliest");
+		consumerProps.put("session.timeout.ms", "30000");
+		consumerProps.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+		consumerProps.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+		 
+		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(consumerProps);
+      
+		//Kafka Consumer subscribes list of topics here.
+		consumer.subscribe(Arrays.asList(topicName));
+		
+		ObjectMapper mapper = new ObjectMapper();
+		java.util.List<Survey> surveyList = new java.util.ArrayList<Survey>();
+		ConsumerRecords<String, String> records = consumer.poll(10000);
+		
+		for (ConsumerRecord<String, String> record : records)
+		{
+			Survey s;
+			try
+			{
+				s = mapper.readValue(record.value(), Survey.class);
+			}
+			catch(Exception e)
+			{
+				s = null;
+			}
+
+			if (s != null)
+			{
+				surveyList.add(s);
+			}
+		 
+		}
+		 
+		consumer.close();
+		return surveyList;
 	}
 	
 	@POST
@@ -60,67 +92,45 @@ public class StudentSurvey{
 				return Response.status(Status.BAD_REQUEST).entity("Required field missing").build();
 			}
 			
-				
-			//create entity and persist.
-			/*Survey s = new Survey();
-			s.setFname(fname);
-			s.setLname(lname);
-			s.setAddr(addr);
-			s.setCity(city);
-			s.setState(state);
-			s.setZip(zip);
-			s.setTele(tele);
-			s.setEmail(email);
-			s.setDate(date);
-			s.setStudents(students);
-			s.setLocation(location);
-			s.setCampus(campus);
-			s.setDorm(dorm);
-			s.setAtmosphere(atmosphere);
-			s.setSports(sports);
-			s.setInterest(interest);
-			s.setRecommendation(recommendation);
-			s.setRaffle(raffle);
-			s.setComments(comments);*/
 			
-			/*Survey s = new Survey();
-			s.setFname("J");
-			s.setLname("Lopez");
-			s.setAddr("youwish");
-			s.setCity("hoville");
-			s.setState("va");
-			s.setZip("22044");
-			s.setTele("8675309");
-			s.setEmail("jlo@theblock.org");
-			s.setDate(null);
-			s.setStudents(null);
-			s.setLocation(null);
-			s.setCampus(null);
-			s.setDorm(null);
-			s.setAtmosphere(null);
-			s.setSports(null);
-			s.setInterest(null);
-			s.setRecommendation(null);
-			s.setRaffle(null);
-			s.setComments(null);*/
+			ObjectMapper mapper = new ObjectMapper();
 			
-			EntityManager em = emf.createEntityManager();
-			EntityTransaction et = em.getTransaction();
+			String surveyString = "";
 			
-			try {
-				et.begin();
-				em.persist(s);
-				et.commit();
-		
-			} catch (Exception e) {
-				try {
-					et.rollback();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			try
+			{
+				surveyString = mapper.writeValueAsString(s);
+			}
+			catch (Exception e)
+			{
 				return Response.status(Status.NOT_ACCEPTABLE)
 						.entity(e.getMessage()).build();
+			}
+			
+			String topicName = "survey-data-topic";
+			
+			Properties producerProps = new Properties();
+			
+			producerProps.put("bootstrap.servers", "184.72.100.51:32710");  //"localhost:9092");
+			producerProps.put("acks", "all");
+			producerProps.put("retries", 0);
+			producerProps.put("batch.size", 16384);  
+			producerProps.put("linger.ms", 1);
+			producerProps.put("buffer.memory", 33554432);
+			producerProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+			producerProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+			Producer<String, String> producer = new KafkaProducer<String, String>(producerProps);
+	
+			try
+			{
+				producer.send(new ProducerRecord<String, String>(topicName, "AngularKey", surveyString));
+				producer.close();
+			}
+			catch(Exception e)
+			{
+				return Response.status(Status.NOT_FOUND)
+					.entity(e.getMessage()).build();
 			}
 		
 		}catch(Exception e) {
