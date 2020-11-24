@@ -1,18 +1,11 @@
 package swe645;
 
 
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Arrays;
 
-import javax.annotation.Resource;
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.transaction.UserTransaction;
-
 import javax.ejb.*;
-import javax.naming.InitialContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -99,7 +92,7 @@ public class StudentSurvey{
 	public Response postdata(Survey s){
 		try {
 			// Check that required fields are filled
-			if(isNullOrBlank(s.getFname())|| isNullOrBlank(s.getFname()) || isNullOrBlank(s.getAddr()) || isNullOrBlank(s.getCity()) ||
+			if(isNullOrBlank(s.getFname())|| isNullOrBlank(s.getLname()) || isNullOrBlank(s.getAddr()) || isNullOrBlank(s.getCity()) ||
 					isNullOrBlank(s.getState()) || isNullOrBlank(s.getZip()) || isNullOrBlank(s.getTele()) || isNullOrBlank(s.getEmail())) {
 				return Response.status(Status.BAD_REQUEST).entity("Required field missing").build();
 			}
