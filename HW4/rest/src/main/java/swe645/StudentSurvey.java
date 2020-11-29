@@ -51,10 +51,10 @@ public class StudentSurvey{
 		
 		// SSL properties
 		consumerProps.put("security.protocol", "SSL");
-		consumerProps.put("ssl.truststore.location", "./keys/user-truststore.jks");
+		consumerProps.put("ssl.truststore.location", "keys/user-truststore.jks");
 		consumerProps.put("ssl.truststore.password", "test1234");   // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
 		consumerProps.put("ssl.truststore.type", "JKS");
-		consumerProps.put("ssl.keystore.location", "./keys/user-keystore.jks");
+		consumerProps.put("ssl.keystore.location", "keys/user-keystore.jks");
 		consumerProps.put("ssl.keystore.password", "test1234");     // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
 		consumerProps.put("ssl.keystore.type", "JKS");
 		consumerProps.put("ssl.key.password", "ttiiMTDwlOz4");      // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
@@ -139,10 +139,10 @@ public class StudentSurvey{
 			
 			// SSL properties
 			producerProps.put("security.protocol", "SSL");
-			producerProps.put("ssl.truststore.location", "./keys/user-truststore.jks");
+			producerProps.put("ssl.truststore.location", "keys/user-truststore.jks");
 			producerProps.put("ssl.truststore.password", "test1234");   // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
 			producerProps.put("ssl.truststore.type", "JKS");
-			producerProps.put("ssl.keystore.location", "./keys/user-keystore.jks");
+			producerProps.put("ssl.keystore.location", "keys/user-keystore.jks");
 			producerProps.put("ssl.keystore.password", "test1234");     // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
 			producerProps.put("ssl.keystore.type", "JKS");
 			producerProps.put("ssl.key.password", "ttiiMTDwlOz4");      // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
