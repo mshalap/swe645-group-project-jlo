@@ -25,7 +25,7 @@ import swe645.entities.*;
 public class StudentSurvey{
 
 	// The address to our KAFKA server
-	private static final String KAFKA_SERVER = "184.72.100.51:32710";
+	private static final String KAFKA_SERVER = "184.72.100.51:30738";
 
 	public static boolean isNullOrBlank(String param) { 
 	    return param == null || param.trim().length() == 0;
@@ -48,7 +48,18 @@ public class StudentSurvey{
 		consumerProps.put("session.timeout.ms", "30000");
 		consumerProps.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		consumerProps.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-		 
+		
+		// SSL properties
+		consumerProps.put("security.protocol", "SSL");
+		consumerProps.put("ssl.truststore.location", "../../keys/user-truststore.jks");
+		consumerProps.put("ssl.truststore.password", "test1234");   // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
+		consumerProps.put("ssl.truststore.type", "JKS");
+		consumerProps.put("ssl.keystore.location", "../../keys/user-keystore.jks");
+		consumerProps.put("ssl.keystore.password", "test1234");     // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
+		consumerProps.put("ssl.keystore.type", "JKS");
+		consumerProps.put("ssl.key.password", "ttiiMTDwlOz4");      // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
+		consumerProps.put("ssl.endpoint.identification.algorithm", "");  // get around error No subject alternative names present, probably also security issue
+		
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(consumerProps);
       
 		//Kafka Consumer subscribes list of topics here
@@ -125,6 +136,17 @@ public class StudentSurvey{
 			producerProps.put("buffer.memory", 33554432);
 			producerProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 			producerProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+			
+			// SSL properties
+			producerProps.put("security.protocol", "SSL");
+			producerProps.put("ssl.truststore.location", "../../keys/user-truststore.jks");
+			producerProps.put("ssl.truststore.password", "test1234");   // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
+			producerProps.put("ssl.truststore.type", "JKS");
+			producerProps.put("ssl.keystore.location", "../../keys/user-keystore.jks");
+			producerProps.put("ssl.keystore.password", "test1234");     // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
+			producerProps.put("ssl.keystore.type", "JKS");
+			producerProps.put("ssl.key.password", "ttiiMTDwlOz4");      // THIS IS HORRIBLE PRACTICE! DON'T COMMIT PASSWORDS!
+			producerProps.put("ssl.endpoint.identification.algorithm", "");  // get around error No subject alternative names present, probably also security issue
 
 			Producer<String, String> producer = new KafkaProducer<String, String>(producerProps);
 	
